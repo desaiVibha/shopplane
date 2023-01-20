@@ -1,0 +1,23 @@
+.sections{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style-type: none;
+    
+}
+.middlehome{
+    padding: 10px 300px 0 300px;
+}
+ul{
+    margin:0;
+    padding: 0;
+}
+li{
+    border: 1px solid white;
+    width:135px;
+    text-align: center;
+}
+li:hover{
+    background-color: skyblue;
+    cursor: pointer;
+}

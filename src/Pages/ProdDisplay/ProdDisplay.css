@@ -1,0 +1,13 @@
+.whole{
+    display: flex;
+    flex-direction: column;
+    margin-left: 220px;
+}
+.second-item{
+    padding-left: 80px;
+
+}
+.third-item{
+    padding-left: 80px;
+
+}

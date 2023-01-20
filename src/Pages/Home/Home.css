@@ -1,0 +1,18 @@
+.home-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.home-top{
+    height:20%;
+    
+}
+.home-middle{
+    height:30%;
+}
+.home-bottom{
+    height:50%;
+}
+.home-bottom{
+    margin-right: 220px;
+}

@@ -1,0 +1,39 @@
+.cloth-info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    /* margin-left: 220px; */
+    width:250px;
+    border: 2px solid lightgray;
+}
+
+.heart-icon{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.heart-icon, .image, .para-info, .price, .fivestar-num, .btn-addtocart{
+    margin:10px 5px 5px 10px;
+}
+
+img{
+    width:180px;
+    height: 220px;
+}
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-to-cart{
+    background-color: blue;
+    width:180px;
+    color:whitesmoke;
+    border-radius: 5px;
+    height:30px;
+}
+.btn-addtocart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

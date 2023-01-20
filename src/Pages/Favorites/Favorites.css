@@ -1,0 +1,17 @@
+.cloth-info-fav{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 220px;
+    width:200px;
+    border: 2px solid lightgray;
+}
+
+.image, .para-info-fav, .price-fav, .fivestar-num-fav{
+    margin:10px 5px 5px 10px;
+}
+
+img{
+    width:180px;
+}
+

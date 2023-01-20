@@ -1,0 +1,59 @@
+.signup-complete{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center; 
+    margin-top: 30px;
+    margin-left: 500px;
+    width:400px;
+    border: 2px solid lightgray;
+}
+.here-su{
+    cursor: pointer;
+    text-decoration-line: underline;
+    text-decoration-color: blue;
+    text-decoration-thickness: 2px;
+}
+.fname-format-signup{
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.lname-format-signup{
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.input-format-signup{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 20px;
+}
+.email-format-signup{
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.pass-format-signup{
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.paraSign{
+    text-align: center;
+    margin-top: 25px;
+}
+.signup-btn{
+    margin-left: 22px;
+    width:220px;
+    background-color: blue;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+.title-signup{
+    margin-top: 20px;
+}
