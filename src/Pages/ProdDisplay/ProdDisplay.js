@@ -3,7 +3,7 @@ import IndProduct from "../../Components/ProductIndividual/IndProduct";
 import { useState,useEffect } from "react";
 
 
-function  ProdDisplay({handlecartclick,handleFavclick}){
+function  ProdDisplay({handlecartclick,handleFavclick,setclickProd,showprodDetail}){
       const sliceIntoChunks = (arr, chunkSize) => {
             for(let j=0;j<arr.length;j++){
                 arr[j].amount=1;
@@ -28,9 +28,17 @@ function  ProdDisplay({handlecartclick,handleFavclick}){
     const[bitData, setbitData]=useState(null);
     
     useEffect(()=>{
-        fetch('https://fakestoreapi.com/products')
+        fetch('https://fakestoreapi.com/products',{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
+            }
+        })
             .then(result=>result.json())
-            .then(result=>setbitData(sliceIntoChunks(result, 3)))
+            .then(result=>{console.log('Rayaru');setbitData(sliceIntoChunks(result, 3))})
+            .catch((error) => {
+                console.log(error);})
 
     },[]);
     
@@ -45,9 +53,9 @@ function  ProdDisplay({handlecartclick,handleFavclick}){
                bitData.map((item)=>
             <tr>
                 {/* {console.log(item[0].id)} */}
-            <td><IndProduct data={item[0]} handlecartclick={handlecartclick} handleFavclick={handleFavclick}/></td>
-            <td className='second-item'><IndProduct data={item[1]} handlecartclick={handlecartclick} handleFavclick={handleFavclick}/></td>
-            {item[2] && <td className='third-item'><IndProduct data={item[2]} handlecartclick={handlecartclick} handleFavclick={handleFavclick}/></td>            
+            <td><IndProduct data={item[0]} handlecartclick={handlecartclick} handleFavclick={handleFavclick} setclickProd={setclickProd} showprodDetail={showprodDetail}/></td>
+            <td className='second-item'><IndProduct data={item[1]} handlecartclick={handlecartclick} handleFavclick={handleFavclick} setclickProd={setclickProd} showprodDetail={showprodDetail}/></td>
+            {item[2] && <td className='third-item'><IndProduct data={item[2]} handlecartclick={handlecartclick} handleFavclick={handleFavclick} setclickProd={setclickProd} showprodDetail={showprodDetail}/></td>            
              }
              </tr>
             )

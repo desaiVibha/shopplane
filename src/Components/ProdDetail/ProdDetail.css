@@ -1,0 +1,11 @@
+.prodsingle{
+    display: flex;
+    margin-left: 220px;
+}
+.imgProd{
+    width:200px;
+}
+.card-div{
+    display: flex;
+    flex-direction: row;
+}

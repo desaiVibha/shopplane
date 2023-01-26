@@ -20,8 +20,10 @@ const Star=({stars,review})=>{
     });
     return(
         <div className='ratingdiv'>
+            <div className='ratingstar'>
             {ratingStar}
-            <span className='review'>({review})</span>
+            </div>
+            <div className='review'>({review})</div>
         </div>
     )
 }

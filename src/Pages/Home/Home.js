@@ -8,6 +8,7 @@ import SignUp from '../SignUp/SignUp';
 import ProdDisplay from '../ProdDisplay/ProdDisplay';
 import Cart from '../../Components/Cart/Cart';
 import Favorites from '../Favorites/Favorites';
+import ProdDetail from '../../Components/ProdDetail/ProdDetail';
 function Home(){  
     const[loginState,setloginState] =useState(false);   
     const[signupState,setsignupState] =useState(false);
@@ -16,6 +17,13 @@ function Home(){
     const[cart,setCart]=useState([]);
     const[lab,setLab]=useState(0);
     const[fav,setFav]=useState([]);
+    const[visitCart,setvisitCart]=useState(false);
+    const[visitAll,setvisitAll]=useState(false);
+    const[clickProd,setclickProd]=useState(false);
+    const[prodSingle,setprodSingle]=useState([]);
+    const[visitDesc,setvisitDesc]=useState(false);
+    const[visitFav,setvisitFav]=useState(false);
+    
     
     //const[num,setNum]=useState(1);
      //const[numArr,setnumArr]=useState([1]);
@@ -34,13 +42,60 @@ function Home(){
     // const[len,setLen]=useState(cart.length);
     // const[visit,setVisit]=useState(false);
     const handlecartclick=(item,e)=>{             
-        
-        if(cart.indexOf(item)!==-1){alert("This item is been already added to the cart"); return};
-        
+        setvisitCart(true);
+        if(visitCart===true && visitAll===true){
+            //console.log('in');
+            setCart(()=>JSON.parse(localStorage.getItem('cartData')));
+            //console.log(cart);
+            //console.log(item);
+            for(let r=0;r<cart.length;r++){
+                if(cart[r].id===item.id){
+                    e.style.backgroundColor='grey'  ; 
+                    //e.innerText="Added to cart";
+                    alert('This item is already added to cart');
+                    return;
+                }
+            }
+            setCart(()=>[...cart,item]);    
+            setLab(()=>lab+1);  
+            e.style.backgroundColor='grey'  ; 
+            e.innerText="Added to cart";
+
+        }
+        else if(visitCart===true && visitDesc===true){
+            //console.log('in');
+            setCart(()=>JSON.parse(localStorage.getItem('cartData')));
+            //console.log(cart);
+            //console.log(item);
+            for(let r=0;r<cart.length;r++){
+                if(cart[r].id===item.id){
+                    e.style.backgroundColor='grey'  ; 
+                    //e.innerText="Added to cart";
+                    alert('This item is already added to cart');
+                    return;
+                }
+            }
+            setCart(()=>[...cart,item]);    
+            setLab(()=>lab+1);  
+            e.style.backgroundColor='grey'  ; 
+            e.innerText="Added to cart";
+
+        }
+        else{
+        // if(cart.indexOf(item)!==-1){alert("This item is been already added to the cart"); return};
+        for(let r=0;r<cart.length;r++){
+            if(cart[r].id===item.id){
+                e.style.backgroundColor='grey'  ; 
+                //e.innerText="Added to cart";
+                alert('This item is already added to cart');
+                return;
+            }
+        }
         setCart(()=>[...cart,item]);    
         setLab(()=>lab+1);  
         e.style.backgroundColor='grey'  ; 
         e.innerText="Added to cart";
+        }
               
     }
     // useEffect(()=>{
@@ -111,26 +166,56 @@ function Home(){
 
     }
  
-    const handleFavclick=(item)=>{
-        if(fav.indexOf(item)!==-1){alert("This item is been already added to the Favorites"); return};
-        setFav(()=>[...fav,item]);         
+    const handleFavclick=(item,ee)=>{
+        if(visitFav===true){
+            setFav(()=>JSON.parse(localStorage.getItem('favData')));
+            for(let r=0;r<fav.length;r++){
+                if(fav[r].id===item.id){
+                    ee.style.color='red'; 
+                    //e.innerText="Added to cart";
+                    alert('This item is already added to favorites');
+                    return;
+                }
+            }
+            setFav(()=>[...fav,item]);  
+            ee.style.color="red";  
+            
+
+        }
+        else{
+            for(let r=0;r<fav.length;r++){
+                if(fav[r].id===item.id){
+                    ee.style.color='red'; 
+                    //e.innerText="Added to cart";
+                    alert('This item is already added to favorites');
+                    return;
+                }
+            }
+            setFav(()=>[...fav,item]);  
+            ee.style.color="red";
+    }   
+    }
+
+    const showprodDetail=(item)=>{
+        setprodSingle(()=>item);
+
     }
     
     return(
         <div className='home-main'>
             
             <div className='home-top'>
-                <TopHome data={setloginState} datas={setsignupState} setShow={setShow} lab={lab} setfavState={setfavState}  />
+                <TopHome data={setloginState} datas={setsignupState} setShow={setShow} lab={lab} setfavState={setfavState} setclickProd={setclickProd} setvisitFav={setvisitFav}  />
             </div>
             <hr style={{margin:"10px 220px 0 220px",color:"grey"}}></hr>
 
             <div className='home-middle'>
-                <MiddleHome setShow={setShow} setloginState={setloginState} setsignupState={setsignupState} setfavState={setfavState}/>
+                <MiddleHome setShow={setShow} setloginState={setloginState} setsignupState={setsignupState} setfavState={setfavState} cart={cart} setvisitAll={setvisitAll} setclickProd={setclickProd} fav={fav}/>
             </div>
             <hr style={{margin:"10px 220px 0 220px",color:"grey"}}></hr>
 
-            <div className='home-bottom'>
-              {(!loginState && !signupState && show && !favState ) && <ProdDisplay handlecartclick={handlecartclick} handleFavclick={handleFavclick}/>} 
+            <div className={`home-bottom ${favState? "home-bottom-fav" :""}`}>
+              {(!loginState && !signupState && show && !favState && !clickProd ) && <ProdDisplay handlecartclick={handlecartclick} handleFavclick={handleFavclick} setclickProd={setclickProd} showprodDetail={showprodDetail}/>} 
               {loginState && <Login setloginState={setloginState} setsignupState={setsignupState} />}                
               {signupState && <SignUp setloginState={setloginState} setsignupState={setsignupState}/>}
               {/* {!show && 
@@ -146,11 +231,15 @@ function Home(){
               {
                 !show && <Cart cart={cart} setCart={setCart} setLab={setLab} lab={lab} handleChange={handleChange}/>
               }
-              {favState &&
+              {favState && 
               fav.map((val)=>               
-                    <Favorites fa={val}/>                  
+                    <Favorites fa={val} handlecartclick={handlecartclick}/>                  
                     )
-               }        
+                    
+               }
+               {
+                clickProd && <ProdDetail prodSingle={prodSingle} setclickProd={setclickProd} cart={cart} setvisitDesc={setvisitDesc}/> 
+               }                  
               
                     
 

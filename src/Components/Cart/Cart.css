@@ -1,19 +1,32 @@
 .cart-image{
     width:120px;
 }
+.cart-items{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
 .cart-box{
     display:flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-left: 220px;
-    margin-right: 80px;
+    
+    margin-right: 40px;
     margin-top: 30px;
     
 }
-.total-price{
-    margin-left: 700px;
-    margin-top: 50px;
+.cart-total{
+    width: 100%;
+    display:flex;
+    margin-left: 220px; 
+    
 }
+.total-price{
+    width:30%;
+    margin-top: 50px;
+    margin-right: 0;
+} 
 .remove-btn{
     background-color: red;
     color: whitesmoke;
@@ -25,4 +38,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+}
+.home-bottom{
+    display: flex;
 }

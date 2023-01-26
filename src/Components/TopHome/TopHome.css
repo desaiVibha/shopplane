@@ -33,7 +33,7 @@
 .cart-hover:hover{
     cursor: pointer;
 }
-span{
+.lab-span{
     background-color: red;
     padding: 0 3px;
     color: white;
