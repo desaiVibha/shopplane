@@ -1,5 +1,5 @@
 import './SignUp.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //import fs from 'fs';
 import {Formik,Form,Field,ErrorMessage} from 'formik';
 //import { useFormik } from 'formik';
@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 //import {writeJsonFile} from 'write-json-file';
 //import { finished } from 'stream';
 //const fs=require('fs');
+
 
 const validationSchema=Yup.object().shape({ 
      userfname:Yup.string('Invalid name').required('First name is required!').min(3, "Name cannot be less than 3 characters").max(30, "Name is too long!"),
@@ -41,49 +42,56 @@ const validationSchema=Yup.object().shape({
 
 function SignUp({setloginState,setsignupState}){
     let [regValues,setregValues]=useState([]);
+    useEffect(()=>{
+                console.log(regValues) ;         
+                localStorage.setItem('data',JSON.stringify(regValues));
+                alert("Successfully signed in! You can now log in");
+    },[regValues])
     const onSubmit=values=>{
           
             
         if(values)
         { 
-            //console.log(values);
+            console.log(values);        
             
-            setregValues([...regValues,{
-                email:values.useremail,
-                firstname:values.userfname,
-                lastname:values.userlname,
-                password:values.userpassword
-            }])
             
-            //console.log(regValues) ;
-            //writeJsonFile('signupdetails.json', regValues);
-            localStorage.setItem('data',JSON.stringify(regValues));
+                setregValues(()=>[...regValues,{
+                    email:values.useremail,
+                    firstname:values.userfname,
+                    lastname:values.userlname,
+                    password:values.userpassword
+                }]);
+                // console.log(regValues) ;         
+                // localStorage.setItem('data',JSON.stringify(regValues));
+                // alert("Successfully signed in! You can now log in");
+            }
+          
             //localStorage.getItem('data');
             
             
             //const jsondata=JSON.stringify(regValues);
             //fs.writeFile("signupdetails.json",jsondata,finished);
 
-         fetch('https://fakestoreapi.com/users',{
-             method:"POST",
-             body:JSON.stringify(
-                 {
-                     email:values.useremail,
-                     firstname:values.userfname,
-                     lastname:values.userlname,
-                     password:values.userpassword,                   
-                 }
-             )
-        })
-            .then(res=>res.json())
-            .then(json=>{
-                //console.log(json);
-                alert("Successfully signed in! You can now log in")})
+        //  fetch('https://fakestoreapi.com/users',{
+        //      method:"POST",
+        //      body:JSON.stringify(
+        //          {
+        //              email:values.useremail,
+        //              firstname:values.userfname,
+        //              lastname:values.userlname,
+        //              password:values.userpassword,                   
+        //          }
+        //      )
+        // })
+        //     .then(res=>res.json())
+        //     .then(json=>{
+        //         //console.log(json);
+        //         alert("Successfully signed in! You can now log in")})
 
             
    }
         //console.log(values)
-    } 
+     
     
     // const formik=useFormik({
     //     initialValues,

@@ -24,7 +24,7 @@ function Favorites({fa,handlecartclick}){
             </div>
 
              <div className='btn-addtocart'>
-                <button onClick={()=>handlecartclick(fa)} className='add-to-cart'>Add to Cart</button>
+                <button onClick={(e)=>handlecartclick(fa,e.target)} className='add-to-cart'>Add to Cart</button>
             </div> 
 
         </div>
