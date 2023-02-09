@@ -15,6 +15,7 @@ function Login({setloginState,setsignupState}){
     const onSubmit=values=>{
         console.log(values);
         let details=JSON.parse(localStorage.getItem('data'));
+        details.shift();
         console.log(details);
         for(let i=0;i<details.length;i++){
             console.log(details);

@@ -41,18 +41,28 @@ const validationSchema=Yup.object().shape({
         // }
 
 function SignUp({setloginState,setsignupState}){
+    let takeFromLocal;
     let [regValues,setregValues]=useState([]);
     useEffect(()=>{
-                console.log(regValues) ;         
+        console.log(takeFromLocal);
+        if(takeFromLocal)
+        setregValues(()=>[...regValues,takeFromLocal]);
+
+    },[takeFromLocal])
+    useEffect(()=>{
+                console.log(regValues) ; 
+                if(regValues)        
                 localStorage.setItem('data',JSON.stringify(regValues));
                 alert("Successfully signed in! You can now log in");
     },[regValues])
+     //new addition useeffect
     const onSubmit=values=>{
           
             
         if(values)
         { 
-            console.log(values);        
+                 console.log(values);   
+                 takeFromLocal=JSON.parse(localStorage.getItem('data')); //new addition    
             
             
                 setregValues(()=>[...regValues,{
